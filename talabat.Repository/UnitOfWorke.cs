@@ -16,24 +16,28 @@ namespace talabat.Repository
     {
         private readonly StoreContext _dbcontext;
         private Hashtable _repositories;
-
+        #region Generic reposatory
         ///public iGenericRepository<Product> ProductRepo { get; set; }
         ///public iGenericRepository<ProductBrand> BrandRepo { get; set; }
         ///public iGenericRepository<ProductType> TypeRepo { get; set; }
         ///public iGenericRepository<Order> OrdersRepo { get; set; }
         ///public iGenericRepository<OrderItem> OrderItemsRepo { get; set; }
         ///public iGenericRepository<DeliveryMethod> DeliveryMethodsRepo { get; set; }
-
+        #endregion
         public UnitOfWorke(StoreContext dbcontext)
         {
             _dbcontext = dbcontext;
             _repositories = new Hashtable();
+            #region Generic reposatory
+
             ///ProductRepo = new GenericRepository<Product>(dbcontext);
             ///BrandRepo = new GenericRepository<ProductBrand>(dbcontext);
             ///TypeRepo = new GenericRepository<ProductType>(dbcontext);
             ///OrdersRepo = new GenericRepository<Order>(dbcontext);
             ///OrderItemsRepo = new GenericRepository<OrderItem>(dbcontext);
             ///DeliveryMethodsRepo = new GenericRepository<DeliveryMethod>(dbcontext);
+            #endregion
+
         }
         public async Task<int> Complete()
           => await _dbcontext.SaveChangesAsync();

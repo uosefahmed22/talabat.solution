@@ -34,7 +34,6 @@ namespace talabat.service
             // 2. Register Cliams
 
             var AuthKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:key"]));
-            // هنعمله مره واحده فقط ف حيابتنا وممكن منعملوش اصلا لانه المفروض بيكون ف كل بروجيكت ف بيكون جاهز اصلا 
             var Token = new JwtSecurityToken(
                             issuer : configuration["JWT:ValidIssuer"],
                             audience : configuration["JWT:ValidAudience"],

@@ -36,6 +36,7 @@ namespace talabat.Apis
             {
                 Options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnection"));
             });
+
             builder.Services.AddAplictionService();
 
             builder.Services.AddSingleton<IConnectionMultiplexer>(Options =>
@@ -98,6 +99,7 @@ namespace talabat.Apis
             // Configure the HTTP request pipeline.
             #region configure middlewares
             app.UseMiddleware<ExeptionMiddleWares>();
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwaggerMiddlewares();

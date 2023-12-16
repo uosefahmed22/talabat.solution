@@ -10,9 +10,10 @@ namespace talabat.core.Specifications
 {
     public class baseSpecification<T> : ISpecification<T> where T : BaseEntity
     {
+        //.where(x=>x.id==1)
         public Expression<Func<T, bool>> Criteria { get; set; }
         public List<Expression<Func<T, object>>> Iincludes { get; set; } =  new List<Expression<Func<T, object>>>();
-        public Expression<Func<T, object>> orderBy      { get; set; }
+        public Expression<Func<T, object>> orderBy{ get; set; }
         public Expression<Func<T, object>> orderByDesc { get; set; }
         public int Skip { get; set; }
         public int Take { get; set; }

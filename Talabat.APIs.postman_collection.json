@@ -1,0 +1,1449 @@
+{
+	"info": {
+		"_postman_id": "c8483b73-0663-4b58-acc2-b1b60171f2b2",
+		"name": "Talabat.APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28876027",
+		"_collection_link": "https://red-meadow-179648.postman.co/workspace/My-Workspace~eb4ca9cc-4d6b-4138-89eb-2bc44784ccab/collection/28876027-c8483b73-0663-4b58-acc2-b1b60171f2b2?action=share&source=collection_link&creator=28876027"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Product",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Product"
+							]
+						},
+						"description": "\n# Get Product Information\n\nThis endpoint retrieves a list of products.\n\n## Request\n\n### HTTP Request\n`GET {{BaseUrl}}api/Product`\n\n### Query Parameters\n- None\n\n## Response\n\n### Success Response\n- **Status Code:** 200\n- **Content:**\n  ```json\n  {\n      \"pageIndex\": 0,\n      \"pageSize\": 0,\n      \"count\": 0,\n      \"data\": [\n          {\n              \"id\": 0,\n              \"name\": \"\",\n              \"description\": \"\",\n              \"pictureURL\": \"\",\n              \"price\": 0,\n              \"productBrandId\": 0,\n              \"productBrand\": \"\",\n              \"productType\": \"\",\n              \"productTypeId\": 0\n          }\n      ]\n  }\n  ```\n\n## Edit Documentation\n- Coming soon\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Product/1",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Product",
+								"1"
+							]
+						},
+						"description": "\nThis HTTP GET request retrieves product information for a specific product with ID 1. The request does not contain a request body.\n\n### Response\n- Status: 200\n- Body:\n  ```json\n  {\n      \"id\": 0,\n      \"name\": \"\",\n      \"description\": \"\",\n      \"pictureURL\": \"\",\n      \"price\": 0,\n      \"productBrandId\": 0,\n      \"productBrand\": \"\",\n      \"productType\": \"\",\n      \"productTypeId\": 0\n  }\n  ```\n  The response includes details of the product such as ID, name, description, picture URL, price, product brand, and product type.\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product with Specifications",
+			"item": [
+				{
+					"name": "Get All Products With Spec",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Data array is present and contains at least one element\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.data).to.exist.and.to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"PageIndex, PageSize, and Count are non-negative integers\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.pageIndex).to.be.a('number').and.to.be.at.least(0);\r",
+									"  pm.expect(responseData.pageSize).to.be.a('number').and.to.be.at.least(0);\r",
+									"  pm.expect(responseData.count).to.be.a('number').and.to.be.at.least(0);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Product",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Product"
+							]
+						},
+						"description": "\n# Get Product\n\nThis endpoint retrieves a list of products.\n\n## Request\n\n### HTTP Request\n`GET {{BaseUrl}}api/Product`\n\n## Response\n\n- `status: 200 OK`\n\n```json\n{\n    \"pageIndex\": 0,\n    \"pageSize\": 0,\n    \"count\": 0,\n    \"data\": [\n        {\n            \"id\": 0,\n            \"name\": \"\",\n            \"description\": \"\",\n            \"pictureURL\": \"\",\n            \"price\": 0,\n            \"productBrandId\": 0,\n            \"productBrand\": \"\",\n            \"productType\": \"\",\n            \"productTypeId\": 0\n        }\n    ]\n}\n```\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Id With Spec",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Product/10",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Product",
+								"10"
+							]
+						},
+						"description": "This API endpoint makes an HTTP GET request to retrieve details of a specific product with the ID 10. The request does not include a request body.\n\n### Response\n\n- Status: 200\n- Body:\n    \n    ``` json\n      {\n          \"id\": 0,\n          \"name\": \"\",\n          \"description\": \"\",\n          \"pictureURL\": \"\",\n          \"price\": 0,\n          \"productBrandId\": 0,\n          \"productBrand\": \"\",\n          \"productType\": \"\",\n          \"productTypeId\": 0\n      }\n    \n     ```\n    \n\n```\nThe response returns the details of the product including its ID, name, description, picture URL, price, product brand ID, product brand, product type, and product type ID.\n\n ```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Error Handling",
+			"item": [
+				{
+					"name": "Get Not Found Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/buggy/notfound",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"buggy",
+								"notfound"
+							]
+						},
+						"description": "This HTTP GET request is used to retrieve data from the endpoint `{{BaseUrl}}api/buggy/notfound`. The request does not contain a request body.\n\n### Response\n\nThe response to the request has a status code of 404. The response body includes a `statuseCode` field with a value of 0, and a `message` field with an empty string value."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Null Ref Error",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/buggy/servererror",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"buggy",
+								"servererror"
+							]
+						},
+						"description": "\nThis API endpoint makes an HTTP GET request to retrieve data from the server. The request is sent to {{BaseUrl}}/api/buggy/servererror. The response to the last call to this request resulted in a status code of 500, with an empty \"details\", \"statuseCode\", and \"message\" in the response body.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get 400 Error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/buggy/badrequest",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"buggy",
+								"badrequest"
+							]
+						},
+						"description": "### GET /api/buggy/badrequest\n\nThis endpoint is used to make a GET request which may result in a 400 Bad Request response.\n\n#### Response\n\n- Status: 400\n- Body:\n    \n    ``` json\n    {\n        \"statuseCode\": 0,\n        \"message\": \"\"\n    }\n    \n     ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get 400 Validation Error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/buggy/badrequest/five",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"buggy",
+								"badrequest",
+								"five"
+							]
+						},
+						"description": "This API endpoint makes an HTTP GET request to retrieve data from the \"buggy\" resource with the path parameter \"badrequest/five\". The request does not include a request body.\n\n### Response\n\nThe API returns a 400 status code with a JSON response body containing an \"errors\" array, a \"statuseCode\" field, and a \"message\" field."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Not Found Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}joooooo",
+							"host": [
+								"{{BaseUrl\n}}joooooo"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to {{BaseUrl}}joooooo. The request does not include a request body.\n\n### Response\n\nThe last execution of this request returned a 404 status code with the following response body:\n\n``` json\n{\n    \"statuseCode\": 0,\n    \"message\": \"\"\n}\n\n ```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Products, Brands and Types",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of products from the API. The request does not require a request body.\n\n### Response\n\n- **Status**: 200\n- **Data**:\n    - `pageIndex` (number): The index of the current page.\n    - `pageSize` (number): The number of items per page.\n    - `count` (number): The total count of products.\n    - `data` (array): An array of products, each containing the following details:\n        - `id` (number): The unique identifier of the product.\n        - `name` (string): The name of the product.\n        - `description` (string): The description of the product.\n        - `pictureURL` (string): The URL of the product's picture.\n        - `price` (number): The price of the product.\n        - `productBrandId` (number): The unique identifier of the product brand.\n        - `productBrand` (string): The brand of the product.\n        - `productType` (string): The type of the product.\n        - `productTypeId` (number): The unique identifier of the product type."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product/brands",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product",
+								"brands"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of product brands. The request does not include a request body.\n\n### Response\n\nThe response returns a status code of 200, along with an array of objects containing the brand name and ID. Each object represents a product brand."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product/types",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product",
+								"types"
+							]
+						},
+						"description": "This API endpoint makes an HTTP GET request to retrieve the types of products available. The request does not contain a request body.\n\n### Response\n\nThe response will have a status code of 200, and it will return an array of objects, where each object contains the \"name\" and \"id\" of a product type. The \"name\" field represents the name of the product type, and the \"id\" field represents the unique identifier for the product type."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sorting and Filtering",
+			"item": [
+				{
+					"name": "GetProducts sorted by name (default case)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?sort=name",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "name"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of products with optional sorting by name. The request does not require a request body.\n\n### Response\n\n- **Status: 200**\n- The response returns a JSON object with the following fields:\n    - `pageIndex` (number): The index of the page.\n    - `pageSize` (number): The size of the page.\n    - `count` (number): The total count of products.\n    - `data` (array): An array of products, where each product object contains the following fields:\n        - `id` (number): The unique identifier of the product.\n        - `name` (string): The name of the product.\n        - `description` (string): The description of the product.\n        - `pictureURL` (string): The URL of the product's picture.\n        - `price` (number): The price of the product.\n        - `productBrandId` (number): The unique identifier of the product brand.\n        - `productBrand` (string): The brand of the product.\n        - `productType` (string): The type of the product.\n        - `productTypeId` (number): The unique identifier of the product type."
+					},
+					"response": []
+				},
+				{
+					"name": "GetProducts sorted by Price Ascending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?sort=priceAsc",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "priceAsc"
+								}
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of products with the option to sort by price in ascending order. The request does not require a request body. The response will include the index of the page, the size of the page, the total count of products, and an array of product objects containing their respective id, name, description, picture URL, price, product brand details, and product type information."
+					},
+					"response": []
+				},
+				{
+					"name": "GetProducts sorted by Price Descending",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJhaG1lZG5hc3I5N0BnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJBaG1lZCBOYXNyIiwiZXhwIjoxNjYyMjkxNjk0LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MDAxLyIsImF1ZCI6Ik15U2VjdXJlZEFwaVVzZXJzIn0.TkjlL4KD01lHWE4M9sZ4DW_topvi-T0-FdJG8ehWuvs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?sort=priceDesc",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "priceDesc"
+								}
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of products with a specified sorting parameter. The request should be made to {{BaseUrl}}/api/product with a query parameter sort=priceDesc.\n\nThe response to this request will have a status code of 200 and will include a JSON object with the following properties:\n\n- pageIndex (number): The index of the current page.\n- pageSize (number): The size of the page.\n- count (number): The total count of products.\n- data (array): An array of products, each containing the following properties:\n    - id (number): The unique identifier of the product.\n    - name (string): The name of the product.\n    - description (string): The description of the product.\n    - pictureURL (string): The URL of the product's picture.\n    - price (number): The price of the product.\n    - productBrandId (number): The unique identifier of the product brand.\n    - productBrand (string): The brand of the product.\n    - productType (string): The type of the product.\n    - productTypeId (number): The unique identifier of the product type."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Brand",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?brandId=6",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "brandId",
+									"value": "6"
+								}
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of products based on the provided brandId. The request should include the brandId as a query parameter. The response will contain a status code of 200 along with a JSON object including pageIndex, pageSize, count, and an array of product data. Each product in the data array includes id, name, description, pictureURL, price, productBrandId, productBrand, productType, and productTypeId."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?typeId=3",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "typeId",
+									"value": "3"
+								}
+							]
+						},
+						"description": "\nThis HTTP GET request retrieves a list of products based on the specified type ID. The request should be made to {{BaseUrl}}api/product?typeId=3.\n\nThe response to the request will have a status code of 200, and it will contain a JSON object with the following properties:\n- pageIndex: The index of the current page.\n- pageSize: The number of items per page.\n- count: The total count of products.\n- data: An array containing product objects with the following properties:\n  - id: The unique identifier of the product.\n  - name: The name of the product.\n  - description: The description of the product.\n  - pictureURL: The URL of the product's picture.\n  - price: The price of the product.\n  - productBrandId: The unique identifier of the product brand.\n  - productBrand: The brand of the product.\n  - productType: The type of the product.\n  - productTypeId: The unique identifier of the product type.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Brand And Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?typeId=6&brandId=1",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "typeId",
+									"value": "6"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "\nThis endpoint makes an HTTP GET request to retrieve products based on the specified type and brand IDs. The request should include the query parameters \"typeId\" and \"brandId\" to filter the products accordingly.\n\nThe response to the request will have a status code of 200, indicating a successful operation. The response body will contain an array of products, with each product's ID, name, description, picture URL, price, product brand details, and product type details.\n\nPlease note that the response may vary based on the provided type and brand IDs, and the number of products available for the specified criteria.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products by Brand And Type Sorted by price desc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Origin",
+								"value": "https://localhost:4200",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?typeId=6&brandId=1&sort=priceDesc",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "typeId",
+									"value": "6"
+								},
+								{
+									"key": "brandId",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "priceDesc"
+								}
+							]
+						},
+						"description": "\nThis HTTP GET request retrieves a list of products based on the provided type ID, brand ID, and sort order. The request should be made to {{BaseUrl}}api/product with the parameters typeId, brandId, and sort. The typeId parameter specifies the type of product, brandId specifies the brand, and sort specifies the order in which the products should be sorted.\n\nThe response to this request will include a status code of 200, along with a JSON object containing information about the products. The response includes the pageIndex, pageSize, count, and an array of data objects, each representing a product. Each data object includes an id, name, description, pictureURL, price, productBrandId, productBrand, productType, and productTypeId.\n\nAdd documentation.\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sorting and Filtering with pagination",
+			"item": [
+				{
+					"name": "Get Paged Products Page 1 Size 5",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?pageSize=5&pageIndex=1",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "5"
+								},
+								{
+									"key": "pageIndex",
+									"value": "1"
+								}
+							]
+						},
+						"description": "\nThis endpoint makes an HTTP GET request to retrieve a list of products. The request should include query parameters for page size and page index. The response will include the requested page of products, along with metadata such as page index, page size, and total count of products.\n\n### Request\n\n- Method: GET\n- Endpoint: {{BaseUrl}}api/product\n- Query Parameters:\n  - pageSize (integer): The number of products to include in a single page\n  - pageIndex (integer): The index of the page to retrieve\n\n### Response\n\n- Status: 200 OK\n- Body:\n  ```json\n  {\n    \"pageIndex\": 0,\n    \"pageSize\": 0,\n    \"count\": 0,\n    \"data\": [\n      {\n        \"id\": 0,\n        \"name\": \"\",\n        \"description\": \"\",\n        \"pictureURL\": \"\",\n        \"price\": 0,\n        \"productBrandId\": 0,\n        \"productBrand\": \"\",\n        \"productType\": \"\",\n        \"productTypeId\": 0\n      }\n    ]\n  }\n  ```\n\nThe response includes the page index, page size, count of products, and an array of product objects with their respective id, name, description, picture URL, price, brand details, and product type information.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paged Products By BrandId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Product?brandId=2&pageSize=2&pageIndex=1",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Product"
+							],
+							"query": [
+								{
+									"key": "brandId",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								},
+								{
+									"key": "pageIndex",
+									"value": "1"
+								}
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve a list of products based on the provided brand ID, page size, and page index. The request parameters include the brand ID, page size, and page index.\n\nThe last execution of this request returned a 200 status code along with a JSON response. The response includes the page index, page size, count, and an array of product data. Each product in the array contains an ID, name, description, picture URL, price, product brand ID, product brand, product type, and product type ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/product?serach=Angular",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "serach",
+									"value": "Angular"
+								}
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve product information based on the search query parameter. The request should be made to {{BaseUrl}}/api/product with the search parameter in the query string.\n\nThe response to the last call returned a status code of 200 along with a JSON object containing the pageIndex, pageSize, count, and an array of product data. Each product in the data array includes an id, name, description, pictureURL, price, productBrandId, productBrand, productType, and productTypeId.\n\nNo request body is required for this endpoint."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Basket(Redis)",
+			"item": [
+				{
+					"name": "Get Basket",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    pm.expect(pm.response.json()).to.be.an('object').that.has.all.keys('id', 'items', 'paymentIntentId', 'clientSecret', 'deliveryMethodId', 'shippingCost');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Quantity and price in each item are non-negative integers\", function () {\r",
+									"    pm.response.json().items.forEach(function(item) {\r",
+									"        pm.expect(item.quantity).to.be.a('number').and.to.be.at.least(0);\r",
+									"        pm.expect(item.price).to.be.a('number').and.to.be.at.least(0);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Items array should not be empty\", function () {\r",
+									"    pm.expect(pm.response.json().items).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Items array should not be empty\");\r",
+									"});// Stores the basketId in an environment or global variable\r",
+									"var basketId = pm.response.json().id;\r",
+									"pm.globals.set(\"basketId\", basketId);// Stores the basketId in an environment or global variable\r",
+									"var basketId = pm.response.json().id;\r",
+									"pm.globals.set(\"basketId\", basketId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Basket?basketId=basket1",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Basket"
+							],
+							"query": [
+								{
+									"key": "basketId",
+									"value": "basket1"
+								}
+							]
+						},
+						"description": "\n### API Request Description\n\nThis HTTP GET request is used to retrieve information about a specific basket by providing the `basketId` as a query parameter in the request URL.\n\n### Response\n\nUpon a successful execution of the request, a status code of 200 is returned along with a JSON response body containing details about the basket. The response includes the `id` of the basket, a list of `items` within the basket, `paymentIntentId`, `clientSecret`, `deliveryMethodId`, and `shippingCost`.\n\nThe `items` array consists of objects with properties such as `id`, `name`, `pictureUrl`, `brand`, `type`, `quantity`, and `price`.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Basket",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Basket?basketId=basket1",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Basket"
+							],
+							"query": [
+								{
+									"key": "basketId",
+									"value": "basket1"
+								}
+							]
+						},
+						"description": "\n    \n# API Request: Delete Basket\nThis API endpoint sends an HTTP DELETE request to delete a specific basket identified by the `basketId`.\n\n### Request\n- Method: DELETE\n- Endpoint: `{{BaseUrl}}api/Basket`\n- Query Parameters:\n  - `basketId` (string, required): The unique identifier of the basket to be deleted.\n\n### Response\n- Status: 200\n- Data: \n  - `true`: Indicates a successful deletion of the specified basket.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Basket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"basket1\",\n  \"items\": [\n    {\n      \"id\": 4,\n      \"name\": \".NET Black & White Mug\",\n      \"price\": 10,\n      \"quantity\": 32,\n      \"pictureUrl\": \"https://localhost:5001/images/products/2.png\",\n      \"brand\": \".NET\",\n      \"type\": \"USB Memory Stick\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Basket",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Basket"
+							]
+						},
+						"description": "# Add Item to Basket\n\nThis API endpoint allows you to add items to the basket.\n\n## Request\n\n- Method: POST\n- Endpoint: {{BaseUrl}}api/Basket\n- Body:\n    \n    ``` json\n    {\n      \"id\": \"\",\n      \"items\": [\n        {\n          \"id\": 0,\n          \"name\": \"\",\n          \"price\": 0,\n          \"quantity\": 0,\n          \"pictureUrl\": \"\",\n          \"brand\": \"\",\n          \"type\": \"\"\n        }\n      ]\n    }\n    \n     ```\n    \n\n## Response\n\n- Status: 200\n- Body:\n    \n    ``` json\n    {\n      \"id\": \"\",\n      \"items\": [\n        {\n          \"id\": 0,\n          \"name\": \"\",\n          \"pictureUrl\": \"\",\n          \"brand\": \"\",\n          \"type\": \"\",\n          \"quantity\": 0,\n          \"price\": 0\n        }\n      ],\n      \"paymentIntentId\": null,\n      \"clientSecret\": null,\n      \"deliveryMethodId\": null,\n      \"shippingCost\": 0\n    }\n    \n     ```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentications",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user = pm.response.json();",
+									"",
+									"pm.test(\"Has properties\", function () {",
+									"    pm.expect(user).to.have.property('displayName');",
+									"    pm.expect(user).to.have.property('email');",
+									"    pm.expect(user).to.have.property('token');",
+									"});",
+									"",
+									"if (pm.test(\"Has properties\")) {",
+									"    pm.globals.set('tom_token', user.token);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"displayName\": \"Yousef Ahmed\",\n  \"email\": \"uosefahmed101@gmail.com\",\n  \"phoneNumber\": \"01032043047\",\n  \"password\": \"Pa$$wrd1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/accounts/register",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"accounts",
+								"register"
+							]
+						},
+						"description": "This HTTP POST request is used to register a new account via the API. The request should include the user's display name, email, phone number, and password in the request body. Upon successful execution, the response will include the user's display name, email, and a token for authentication.\n\nThe request payload should be in raw JSON format with the following parameters:\n\n- `displayName`: (string) The display name of the user.\n- `email`: (string) The email address of the user.\n- `phoneNumber`: (string) The phone number of the user.\n- `password`: (string) The password for the user's account.\n    \n\nThe response will have a status code of 200 and will include the following parameters:\n\n- `displayName`: (string) The display name of the registered user.\n- `email`: (string) The email address of the registered user.\n- `token`: (string) A token for authentication purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const user = pm.response.json();",
+									"",
+									"pm.test(\"Has properties\", function () {",
+									"    pm.expect(user).to.have.property('displayName');",
+									"    pm.expect(user).to.have.property('email');",
+									"    pm.expect(user).to.have.property('token');",
+									"});",
+									"",
+									"if (pm.test(\"Has properties\")) {",
+									"    pm.globals.set('tom_token', user.token);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"uosefahmed0011@gmail.com\",\n\t\"password\": \"Pa$$wrd1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/accounts/login",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"accounts",
+								"login"
+							]
+						},
+						"description": "This endpoint is used to authenticate and login to a user account. The HTTP POST request should be sent to {{BaseUrl}}/api/accounts/login with the user's email and password provided in the request body.\n\n### Request Body\n\n- `email` (string): The email of the user.\n- `password` (string): The password of the user.\n    \n\n### Response\n\nUpon successful authentication, the server will respond with a status code of 200 and the following data:\n\n- `displayName` (string): The display name of the authenticated user.\n- `email` (string): The email address of the authenticated user.\n- `token` (string): A token for accessing protected resources on behalf of the authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/accounts/getcurrentuser",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"accounts",
+								"getcurrentuser"
+							]
+						},
+						"description": "This API endpoint makes an HTTP GET request to retrieve the details of the current user account. The request does not require any parameters or payload. Upon successful execution, the API returns a status code of 200 along with a JSON response containing the user's display name, email, and token."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Address",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJhaG1lZG5hc3I5N0BnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJBaG1lZCBOYXNyIiwiZXhwIjoxNjYyNjQ0MjMwLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MDAxLyIsImF1ZCI6Ik15U2VjdXJlZEFwaVVzZXJzIn0.RtIg0EhGFEep_WdvpKtzmL6fW6c1csOeX7Nf-7T1f-g"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/accounts/address",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"accounts",
+								"address"
+							]
+						},
+						"description": "This API endpoint makes an HTTP GET request to retrieve the address information associated with the user's account. The request does not require any additional parameters or payload in the request body. Upon a successful execution, the API returns a status code of 204 with no response body."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJhaG1lZG5hc3I5N0BnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJBaG1lZCBOYXNyIiwiZXhwIjoxNjYyNzQ0Mzc3LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MDAxLyIsImF1ZCI6Ik15U2VjdXJlZEFwaVVzZXJzIn0.cc5Om4AabDr4ZuVhc7VXZaxXY77FgYCvowD2_TvV0Pg"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fname\": \"Uosef\",\n  \"lname\": \"Ahmed\",\n  \"street\": \"Salahsalam\",\n  \"city\": \"Bni seuf\",\n  \"country\": \"Egypt\"\n}\n \n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/accounts/updateuseraddress",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"accounts",
+								"updateuseraddress"
+							]
+						},
+						"description": "\nThis endpoint allows you to update the address details for a user account. The HTTP PUT request should be sent to {{BaseUrl}}/api/accounts/updateuseraddress with the required payload in the raw request body.\n\n### Request Body\n- `fname` (string, optional): The first name of the user.\n- `lname` (string, optional): The last name of the user.\n- `street` (string, optional): The street address of the user.\n- `city` (string, optional): The city of the user.\n- `country` (string, optional): The country of the user.\n\n### Response\nUpon a successful execution, the endpoint will return a status code of 200 along with the updated address details of the user in the response body.\n\nExample Response:\n```json\n{\n    \"id\": 0,\n    \"fname\": \"\",\n    \"lname\": \"\",\n    \"street\": \"\",\n    \"city\": \"\",\n    \"country\": \"\"\n}\n```\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Validate email address",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{bob_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/accounts/checkemailexists?email=uosefahmed0022@gmail.com",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"accounts",
+								"checkemailexists"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "uosefahmed0022@gmail.com"
+								}
+							]
+						},
+						"description": "This endpoint is used to check if a given email exists in the accounts. It is an HTTP GET request with the email parameter in the query string.\n\n### Request\n\n- Method: GET\n- Endpoint: {{BaseUrl}}api/accounts/checkemailexists\n- Query Parameters:\n    - email: (string) The email to be checked\n\n### Response\n\n- Status: 200 OK\n- Body:\n    - true: Indicates whether the email exists in the accounts or not"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Update Basket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"basket1\",\n    \"items\": [\n        {\n            \"id\": 4,\n            \"name\": \".NET Black & White Mug\",\n            \"price\": 1,\n            \"quantity\": 2,\n            \"pictureUrl\": \"https://localhost:5001/images/products/2.png\",\n            \"brand\": \".NET\",\n            \"type\": \"USB Memory Stick\"\n        }\n    ]\n   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/basket",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"basket"
+							]
+						},
+						"description": "\n### Add Item to Basket\n\nThis endpoint allows the client to add items to the basket. \n\n#### Request Body\n- `id` (string, required): The ID of the basket.\n- `items` (array, required): An array of objects representing the items to be added to the basket. Each item object includes the following parameters:\n  - `id` (number, required): The ID of the item.\n  - `name` (string, required): The name of the item.\n  - `price` (number, required): The price of the item.\n  - `quantity` (number, required): The quantity of the item.\n  - `pictureUrl` (string, required): The URL of the item's picture.\n  - `brand` (string, required): The brand of the item.\n  - `type` (string, required): The type of the item.\n\n#### Response (200 OK)\nThe successful response will include the following data:\n- `id` (string): The ID of the basket.\n- `items` (array): An array of objects representing the items in the basket. Each item object includes the following parameters:\n  - `id` (number): The ID of the item.\n  - `name` (string): The name of the item.\n  - `pictureUrl` (string): The URL of the item's picture.\n  - `brand` (string): The brand of the item.\n  - `type` (string): The type of the item.\n  - `quantity` (number): The quantity of the item.\n  - `price` (number): The price of the item.\n- `paymentIntentId` (string): The ID of the payment intent.\n- `clientSecret` (string): The client secret for the payment intent.\n- `deliveryMethodId` (string): The ID of the delivery method.\n- `shippingCost` (number): The cost of shipping.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"basketId\": \"basket1\",\r\n  \"deliveryMethod\": 1,\r\n  \"shipingAddress\": {\r\n    \"firstName\": \"string\",\r\n    \"lastName\": \"string\",\r\n    \"street\": \"string\",\r\n    \"city\": \"string\",\r\n    \"country\": \"string\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Order",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders For User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Order",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order For User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bob_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Order/1",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllDeliveryMethods",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl\n}}api/Order/DeliveryMethod",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"Order",
+								"DeliveryMethod"
+							]
+						},
+						"description": "\nThis endpoint makes an HTTP GET request to retrieve the delivery methods available for orders. The request does not require a request body. \n\nThe response to the request is a 200 status code, and it returns an array of objects, each representing a delivery method. Each object includes the following properties:\n- \"shortName\": A short name for the delivery method\n- \"description\": A description of the delivery method\n- \"deliveryTime\": The estimated delivery time\n- \"cost\": The cost of the delivery method\n- \"id\": The unique identifier for the delivery method\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Create Basket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"basket1\",\n  \"items\": [\n    {\n      \"id\": 4,\n      \"name\": \".NET Black & White Mug\",\n      \"price\": 10,\n      \"quantity\": 32,\n      \"pictureUrl\": \"https://localhost:5001/images/products/2.png\",\n      \"brand\": \".NET\",\n      \"type\": \"USB Memory Stick\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/basket",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"basket"
+							]
+						},
+						"description": "The API endpoint `POST /api/basket` is used to add items to the basket. The request should be sent in the JSON format with the `id` and `items` array containing details of the items to be added. The response will include the updated basket details along with additional information such as `paymentIntentId`, `clientSecret`, `deliveryMethodId`, and `shippingCost`. The status of the response will be 200 upon successful execution."
+					},
+					"response": []
+				},
+				{
+					"name": "Create payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/payments/basket1",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"payments",
+								"basket1"
+							]
+						},
+						"description": "This HTTP POST request is used to add payments to basket1. The request should be sent to {{BaseUrl}}/api/payments/basket1. The request body should be in raw format.\n\nThe response to the request will have a status code of 200, indicating a successful execution. The response will include the ID, items with their details such as ID, name, picture URL, brand, type, quantity, and price. Additionally, the response will contain the payment intent ID, client secret, delivery method ID, and shipping cost."
+					},
+					"response": []
+				},
+				{
+					"name": "Update payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJZb3VzZWYgQWhtZWQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ1b3NlZmFobWVkMDAxMUBnbWFpbC5jb20iLCJleHAiOjE3MDM1NzQwNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMjkvIiwiYXVkIjoiTXlTZWN1cmVVc2VycyJ9.VL_NP4UjRpp1HWjsRKf6_bBQrl0NZXoBNU3zOGwSd3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{bob_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"basket1\",\r\n    \"items\": [\r\n        {\r\n            \"id\": 4,\r\n            \"name\": \".NET Black & White Mug\",\r\n            \"pictureUrl\": \"https://localhost:5001/images/products/2.png\",\r\n            \"brand\": \".NET\",\r\n            \"type\": \"USB Memory Stick\",\r\n            \"quantity\": 2,\r\n            \"price\": 300.00\r\n        }\r\n    ],\r\n    \"paymentIntentId\": \"pi_3ONsXuISfR8okMIm0cdbqJnm\",\r\n    \"clientSecret\": \"pi_3ONsXuISfR8okMIm0cdbqJnm_secret_2NuyPeft9EysfDGEyZND9pBsX\",\r\n    \"deliveryMethodId\": null,\r\n    \"shippingCost\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl\n}}api/payments/basket4",
+							"host": [
+								"{{BaseUrl\n}}api"
+							],
+							"path": [
+								"payments",
+								"basket4"
+							]
+						},
+						"description": "This HTTP POST request is used to add payments to the basket. The request should be sent to {{BaseUrl}}/api/payments/basket4 with a payload in raw format. The payload should include the ID, items (with details such as ID, name, picture URL, brand, type, quantity, and price), payment intent ID, client secret, delivery method ID, and shipping cost.\n\nThe response to this request will have a status code of 200 and will include the same structure as the request payload, with the corresponding values for each field."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl\n",
+			"value": "https://localhost:7029/",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

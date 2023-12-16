@@ -17,9 +17,9 @@ namespace talabat.Repository
         { 
             _database = redis.GetDatabase();
         }
-        public async Task<bool> DeleteBasketAsync(string basketid)
+        public async Task<bool> DeleteBasketAsync(string basketId)
         {
-            return await _database.KeyDeleteAsync(basketid);
+            return await _database.KeyDeleteAsync(basketId);
         }
 
         public async Task<CustomerBasket?> GetBasketAsync(string basketid)

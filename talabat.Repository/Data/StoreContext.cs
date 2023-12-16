@@ -22,12 +22,6 @@ namespace talabat.Repository
         {
             base.OnModelCreating(modelBuilder);
 
-            ///modelBuilder.ApplyConfiguration(new ProductBrandConfegrations());
-            ///modelBuilder.ApplyConfiguration(new ProductTypeConfigurations());
-            ///modelBuilder.ApplyConfiguration(new ProductConfigrations());
-
-
-            // this line make the same object that the before 3 lines make it
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
