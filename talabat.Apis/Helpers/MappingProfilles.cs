@@ -23,7 +23,7 @@ namespace talabat.Apis.Helpers
 
             CreateMap<CustomerBasketDto, CustomerBasket>();
             CreateMap<BasketitemDto, Basketitem>();
-            CreateMap<OrderAddressDto, talabat.core.Entites.Order_Aggregate.Address>();
+            CreateMap<OrderAddressDto, core.Entites.Order_Aggregate.Address>();
 
 
         }

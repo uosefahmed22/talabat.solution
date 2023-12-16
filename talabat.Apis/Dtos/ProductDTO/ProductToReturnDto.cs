@@ -4,6 +4,7 @@ namespace talabat.Apis.Dtos.ProductDTO
 {
     public class ProductToReturnDto
     {
+
         public int id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

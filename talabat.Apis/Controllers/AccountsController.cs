@@ -67,16 +67,16 @@ namespace talabat.Apis.Controllers
             var user = new AppUser
             {
                 DisplayName = model.DisplayName,
-                Email = model.Email, //ziad77566@gmail.co
+                Email = model.Email, 
                 PhoneNumber = model.PhoneNumber,
-                UserName = model.Email.Split('@')[0] //ziad77566
+                UserName = model.Email.Split('@')[0] 
             };
             var Result = await _userManager.CreateAsync(user, model.Password);
             if (!Result.Succeeded) return BadRequest(new ApiResponse(400));
             return Ok(new UserDto()
             {
                 DisplayName = user.DisplayName,
-                Email = user.Email, //ziad77566@gmail.co
+                Email = user.Email, 
                 Token = await _TokenService.CreateTokenAsync(user) //"this will be atoken" 
             });
         }
@@ -120,7 +120,6 @@ namespace talabat.Apis.Controllers
             var user = await _userManager.FindUserWithEmailAsync(User);
             var MappedAddress = _mapper.Map<AddressDto, Address>(UpdateAddress);
 
-            MappedAddress.Id = user.Address.Id;
             user.Address = MappedAddress;
 
             var Result =  await _userManager.UpdateAsync(user);

@@ -10,7 +10,7 @@ namespace talabat.core.Specifications
 {
     public class OrderWithPaymentSpec:baseSpecification<Entites.Order_Aggregate.Order>
     {
-        public OrderWithPaymentSpec(string PaymentIntentId):base(O=>O.PaymentIntentId==PaymentIntentId)
+        public OrderWithPaymentSpec(string paymentIntentId):base(O=>O.PaymentIntentId==paymentIntentId)
         {
             
         }
