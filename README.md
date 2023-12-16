@@ -42,7 +42,7 @@ E-Commerce-API is a simple RESTful API for purchases and products, built with No
 
 To run this project, you need to have Node.js and MongoDB installed on your system.
 
-1. Clone this repository: `git clone https://github.com/0xEbrahim/E-Commerce-API.git`
+1. Clone this repository: `https://github.com/uosefahmed22/talabat.solution/blob/main/Talabat.APIs.postman_collection.json`
 2. Install the dependencies: `npm install`
 3. Start the server: `npm start`
 
