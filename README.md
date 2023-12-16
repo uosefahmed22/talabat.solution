@@ -48,6 +48,6 @@ To run this project, you need to have Node.js and MongoDB installed on your syst
 
 ## Usage
 
-The API endpoints are documented in the [Postman collection](https://github.com/0xEbrahim/E-Commerce-API/blob/main/E-Commerce.postman_collection.json). You can import it to Postman and test the API.
+The API endpoints are documented in the [Postman collection](https://github.com/uosefahmed22/talabat.solution/blob/main/Talabat.APIs.postman_collection.json). You can import it to Postman and test the API.
 
 
