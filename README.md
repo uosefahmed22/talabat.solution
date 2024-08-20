@@ -1,6 +1,5 @@
 # eCommerce API
 
-![API Logo](http://imgur.com/t3teAxi.png)
 
 ## Features
 
